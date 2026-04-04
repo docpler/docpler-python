@@ -3,7 +3,7 @@ HWP (한글 워드프로세서) → Markdown 변환기.
 markitdown 플러그인 및 독립 사용 모두 지원.
 """
 from pathlib import Path
-from typing import Optional
+from typing import Any, BinaryIO, Optional
 
 
 ACCEPTED_EXTENSIONS = frozenset({".hwp"})
@@ -21,27 +21,37 @@ def convert(path: str | Path) -> str:
 
 
 class HwpConverter:
-    """markitdown 플러그인: HWP 파일을 Markdown으로 변환."""
+    """markitdown 컨버터: HWP 파일을 Markdown으로 변환."""
 
     def accepts(
         self,
-        filename: str = "",
-        mime_type: str = "",
+        file_stream: BinaryIO,
+        stream_info: Any,
         **kwargs,
     ) -> bool:
-        ext = Path(filename).suffix.lower() if filename else ""
-        return ext in ACCEPTED_EXTENSIONS or mime_type in ACCEPTED_MIME_TYPES
+        ext = getattr(stream_info, "extension", "") or ""
+        mime = getattr(stream_info, "mimetype", "") or ""
+        return ext.lower() in ACCEPTED_EXTENSIONS or mime in ACCEPTED_MIME_TYPES
 
-    def convert(self, local_path: str, **kwargs):
-        if not Path(str(local_path)).suffix.lower() == ".hwp":
+    def convert(
+        self,
+        file_stream: BinaryIO,
+        stream_info: Any,
+        **kwargs,
+    ):
+        from markitdown import DocumentConverterResult
+
+        local_path = getattr(stream_info, "local_path", None)
+        if not local_path:
             return None
 
-        try:
-            from markitdown import DocumentConverterResult
-            markdown_text = convert(local_path)
-            return DocumentConverterResult(
-                title=None,
-                text_content=markdown_text,
-            )
-        except Exception as exc:
-            raise ValueError(f"HWP 변환 실패: {exc}") from exc
+        markdown_text = convert(local_path)
+        return DocumentConverterResult(markdown=markdown_text)
+
+
+class HwpConverterPlugin:
+    """markitdown 플러그인 엔트리포인트."""
+
+    @staticmethod
+    def register_converters(markitdown_instance, **kwargs):
+        markitdown_instance.register_converter(HwpConverter())

@@ -26,8 +26,8 @@ markitdown = ["markitdown>=0.0.1"]
 Repository = "https://github.com/docpler/docpler-python"
 
 # markitdown 플러그인으로 자동 등록
-[project.entry-points."markitdown.converters"]
-hwp = "docpler.hwp:HwpConverter"
+[project.entry-points."markitdown.plugin"]
+docpler = "docpler.hwp:HwpConverterPlugin"
 
 [tool.maturin]
 # Rust 소스는 private repo(rightstack/docpler)에서 빌드
