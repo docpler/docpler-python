@@ -31,7 +31,7 @@ print(markdown)
 ```python
 from markitdown import MarkItDown
 
-md = MarkItDown()
+md = MarkItDown(enable_plugins=True)
 result = md.convert("document.hwp")
 print(result.text_content)
 ```
