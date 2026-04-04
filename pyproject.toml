@@ -1,0 +1,37 @@
+[build-system]
+requires = ["maturin>=1.7,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "docpler"
+version = "0.1.0"
+description = "Convert HWP (and more) documents to Markdown"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "rightstack" }]
+keywords = ["hwp", "markdown", "document", "converter"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: 3",
+    "Topic :: Text Processing :: Markup",
+]
+dependencies = []
+
+[project.optional-dependencies]
+markitdown = ["markitdown>=0.0.1"]
+
+[project.urls]
+Repository = "https://github.com/docpler/docpler-python"
+
+# markitdown 플러그인으로 자동 등록
+[project.entry-points."markitdown.converters"]
+hwp = "docpler.hwp:HwpConverter"
+
+[tool.maturin]
+# Rust 소스는 private repo(rightstack/docpler)에서 빌드
+# maturin build 시 --manifest-path 로 Rust crate 경로를 지정
+python-source = "python"
+module-name = "docpler._docpler"
+features = ["pyo3/extension-module"]
