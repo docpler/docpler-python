@@ -1,13 +1,52 @@
 # docpler
 
-HWP(한글 워드프로세서) 등 문서 파일을 Markdown으로 변환하는 Python 패키지.
-Rust 코어 기반으로 빠르고 정확한 파싱을 제공합니다.
+A Python library for converting HWP documents to Markdown.
 
-## 지원 포맷
+HWP is a document format used by [Hancom Office](https://www.hancom.com/), the most widely used word processor in South Korea — commonly found in government, legal, and academic documents.
 
-| 포맷 | 읽기 | 출력 |
-|------|------|------|
+docpler uses a high-performance Rust core to parse HWP 5.0 files and produce clean Markdown output, including tables, equations, and text boxes.
+
+## Supported Formats
+
+| Format | Read | Output |
+|--------|------|--------|
 | HWP 5.0 | ✅ | Markdown |
+
+## Installation
+
+```bash
+pip install docpler
+```
+
+## Usage
+
+```python
+from docpler.hwp import convert
+
+markdown = convert("document.hwp")
+print(markdown)
+```
+
+### MarkItDown Plugin
+
+```bash
+pip install markitdown-hwp
+```
+
+```python
+from markitdown import MarkItDown
+
+md = MarkItDown(enable_plugins=True)
+result = md.convert("document.hwp")
+print(result.text_content)
+```
+
+---
+
+# 한국어
+
+HWP(한글 워드프로세서) 문서를 Markdown으로 변환하는 Python 패키지입니다.
+Rust 코어 기반으로 빠르고 정확한 파싱을 제공합니다.
 
 ## 설치
 
@@ -16,8 +55,6 @@ pip install docpler
 ```
 
 ## 사용법
-
-### 기본 사용
 
 ```python
 from docpler.hwp import convert
@@ -28,6 +65,10 @@ print(markdown)
 
 ### markitdown 플러그인
 
+```bash
+pip install markitdown-hwp
+```
+
 ```python
 from markitdown import MarkItDown
 
@@ -36,16 +77,15 @@ result = md.convert("document.hwp")
 print(result.text_content)
 ```
 
-## 라이선스
+---
 
-이 프로젝트는 MIT 라이선스로 제공되며, 현재 버전의 사용에 별도의 제약은 없습니다.
+## License
 
-- **Python 래퍼 코드**: 오픈소스 (MIT)
-- **Rust 코어 엔진**: 컴파일된 바이너리로 배포되며, 소스 코드는 비공개입니다.
+MIT
 
-## HWP 포맷 관련 고지
+- Python wrapper: open source (MIT)
+- Rust core engine: distributed as compiled binary, source code is private.
 
-본 제품은 한글과컴퓨터의 한글 문서 파일(.hwp) 공개 문서를 참고하여 개발하였습니다.
+## HWP Format Notice
 
-HWP 파일 포맷 공개 문서의 저작권은 (주)한글과컴퓨터에 있으며,
-공개 문서의 전문은 [한글과컴퓨터 공식 페이지](https://www.hancom.com/etc/hwpDownload.do)에서 확인할 수 있습니다.
+This product was developed with reference to the HWP document file (.hwp) specification published by [Hancom](https://www.hancom.com/etc/hwpDownload.do).
