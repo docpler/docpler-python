@@ -4,10 +4,10 @@ build-backend = "maturin"
 
 [project]
 name = "docpler"
-version = "0.1.0"
+version = "1.0.0"
 description = "Convert HWP (and more) documents to Markdown"
 requires-python = ">=3.9"
-license = { text = "MIT" }
+license = { text = "BSL-1.1" }
 authors = [{ name = "rightstack" }]
 keywords = ["hwp", "markdown", "document", "converter"]
 classifiers = [

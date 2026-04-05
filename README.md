@@ -81,10 +81,12 @@ print(result.text_content)
 
 ## License
 
-MIT
+[Business Source License 1.1 (BSL 1.1)](https://mariadb.com/bsl11/)
 
-- Python wrapper: open source (MIT)
-- Rust core engine: distributed as compiled binary, source code is private.
+- Free to use for any purpose, including production use
+- **Cannot** be provided to others as a managed service
+- Converts to **Apache License 2.0** on 2031-04-05
+- Rust core engine: distributed as compiled binary, source code is private
 
 ## HWP Format Notice
 
