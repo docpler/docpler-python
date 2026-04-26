@@ -7,7 +7,7 @@ name = "docpler"
 version = "1.0.0"
 description = "Convert HWP (and more) documents to Markdown"
 requires-python = ">=3.9"
-license = { text = "BSL-1.1" }
+license = { text = "Elastic-2.0" }
 authors = [{ name = "rightstack" }]
 keywords = ["hwp", "markdown", "document", "converter"]
 classifiers = [
