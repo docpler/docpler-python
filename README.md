@@ -81,11 +81,12 @@ print(result.text_content)
 
 ## License
 
-[Business Source License 1.1 (BSL 1.1)](https://mariadb.com/bsl11/)
+[Elastic License 2.0 (ELv2)](https://www.elastic.co/licensing/elastic-license)
 
 - Free to use for any purpose, including production use
-- **Cannot** be provided to others as a managed service
-- Converts to **Apache License 2.0** on 2031-04-05
+- **Cannot** be provided to others as a hosted or managed service
+- **Cannot** circumvent license key functionality
+- Must preserve copyright and trademark notices
 - Rust core engine: distributed as compiled binary, source code is private
 
 ## HWP Format Notice
